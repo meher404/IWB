@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script src="js/vendor/jquery-1.9.1.min.js"></script>
+    <script type='text/javascript'>
+    
+    function getData()
+    {
+    	//console.log("asd");
+		$.ajax({
+			url: "GetAllUsersServlet",
+			success: function(data){
+			//console.log("asd1");
+			  console.log("data: " +data);
+			  document.getElementById("hid").value = data;
+			  drawChart();
+			}
+		});
+		
+    }
+    //console.log("asd");
+      google.load('visualization', '1', {packages:['gauge']});
+     // google.setOnLoadCallback(drawChart);
+      function drawChart() 
+      {
+    	  	
+    		var dataFromServlet = document.getElementById("hid").value.split("::");
+	    	//console.log("datafromservlet: " + dataFromServlet);
+	    	document.getElementById('totalUsers').innerHTML = "<h3>TotalUsers : " + dataFromServlet[0]+"</h3>";
+	       
+	    	var servon = parseInt(dataFromServlet[1]);
+	    	var servtot =  parseInt(dataFromServlet[0]);
+	    	var online; var offline;
+	    	if(servtot<=0) {
+	    		online = 0;
+	    		offline = 0;
+	    	}
+	    	else{
+	    		online = Math.round((servon/servtot)*100);	
+	    		offline = Math.round((servtot-servon)/servtot)*100; 
+	    	}
+	    	
+	        
+	    	var data = google.visualization.arrayToDataTable([
+	          ['Label', 'Value'],
+	          ['Online %', online],
+	          ['Offline %', offline],
+	        ]);
+	
+	        var options = {
+	          width: 400, height: 350,
+	          redFrom: 90, redTo: 100,
+	          yellowFrom:75, yellowTo: 90,
+	          minorTicks: 5
+	        };
+	
+	        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+	        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body onload = "javascript:getData()">
+    <div id='chart_div'></div>
+     <input type = "hidden" name = "hid" id = "hid"/>
+     <div id='totalUsers' style="align:center"></div>
+  </body>
+</html>

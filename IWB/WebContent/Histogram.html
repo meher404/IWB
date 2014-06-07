@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script src="js/vendor/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+    
+      function getData()
+      {
+    	  console.log("asd");
+  		$.ajax({
+  			url: "CategoryWiseStatisticsServlet",
+  			success: function(data){
+  			//console.log("asd1");
+  			  console.log("data: " +data);
+  			  document.getElementById("hid").value = data;
+  			  //console.log( "data: " + document.getElementById("hid").value);
+  			drawChart();
+  			}
+  		});
+  		
+  		//google.setOnLoadCallback(drawChart);
+      }
+      
+      google.load("visualization", "1", {packages:["corechart"]});
+      
+      
+     
+      
+      
+      
+      function drawChart() {
+    	  
+	  
+		var dataFromServlet = document.getElementById("hid").value;
+		//console.log("drawchart: " + dataFromServlet);
+		var recs = dataFromServlet.split("::::");
+		var recSplit;
+		var values=["dummy"];
+		var i = 0;
+		//console.log(">>>>recs: " + recs);
+		var rec;
+		for(var j = 0; j < recs.length; j++)
+		{
+			//console.log("rec: " + recs[j])
+			recSplit = recs[j].split("::");
+			//("recSplit[0] : " + recSplit[0]);
+			values.push(recSplit[0]);//[i] ="\""+recSplit[0]+"\""
+			//i = i + 1;
+			//values[i] = recSplit[1];
+			//i = i + 1;
+			values.push(recSplit[1]);
+		}
+		//console.log("j: " + j);
+		//for(var i = 0; i < 11; i++)
+			//console.log(values[i]);
+        var data = google.visualization.arrayToDataTable([
+	['Category', 'Frequency', { role: 'style' }, { role: 'annotation' } ],
+        [""+values[1], parseInt(values[2]), '#b87333',""+values[1]],
+	[""+values[3], parseInt(values[4]), '#3385FF',""+values[3]],
+	[""+values[5], parseInt(values[6]), '#AB4ACC',""+values[5]],
+	[""+values[7], parseInt(values[8]), '#FF0066',""+values[7]],
+	[""+values[9], parseInt(values[10]), 'color: #52cca3',""+values[9]],
+      ]); 
+		
+      
+     
+
+        var options = {
+          title: 'Trending Categories',
+          hAxis: {title: 'Category', titleTextStyle: {color: 'red'}},
+		  backgroundColor:'transparent'
+        };
+       
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body onload = "javascript:getData()">
+    <div id="chart_div" style="width: 900px; height: 380px;"></div>
+    <input type = "hidden" name = "hid" id = "hid"/>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  
+  function drawChart(cat) {
+	    var dataFromServlet = document.getElementById("hid").value;
+	    var recs = dataFromServlet.split("::::");
+		var recSplit;
+		var values=["dummy"];
+		var rec;
+		for(var j = 0; j < recs.length; j++)
+		{
+			recSplit = recs[j].split("::");
+			values.push(recSplit[0]);
+			values.push(recSplit[1]);
+		}
+	    
+		var data = google.visualization.arrayToDataTable([
+		  ['URL', 'Frequency'],
+		  [values[1],     parseInt(values[2])],
+		  [values[3],     parseInt(values[4])],
+		  [values[5],     parseInt(values[6])],
+		  [values[7],     parseInt(values[8])],
+		  [values[9],     parseInt(values[10])]
+		]);
+	
+		var options = {
+		  title: 'URL Traffic in ' + cat,
+		  pieHole: 0.4,
+		  backgroundColor: 'transparent'
+		};
+		
+		var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+		chart.draw(data, options);
+  }
+  
+ /*  function drawChartParams(data,options) {
+	
+	var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+	chart.draw(data, options);
+  } */
+</script>
+<script>
+var topUrlByCatServlet='servlet-name';
+function getTopUrlByCat(cat){
+	
+	console.log("asd");
+	$.ajax({
+		url: "GetTopUrlsServlet?category="+cat,
+		success: function(data){
+		//console.log("asd1");
+		  console.log("data: " +data);
+		  document.getElementById("hid").value = data;
+		  drawChart(cat);
+		}
+	});
+
+}
+</script>
+	<body onload="getTopUrlByCat('Arts')">
+		<div>
+		<div style="width: 30%; float:left"><br><br>
+			<font size="4.5"><b>
+				
+					<div onclick="getTopUrlByCat('Arts')"><span class="icon-asterisk"></span>Arts</div>
+					<div onclick="getTopUrlByCat('Business')"><span class="icon-asterisk"></span>Business</div>
+					<div onclick="getTopUrlByCat('Computers')"><span class="icon-asterisk"></span>Computers</div>
+					<div onclick="getTopUrlByCat('Games')"><span class="icon-asterisk"></span>Games</div>
+					<div onclick="getTopUrlByCat('Health')"><span class="icon-asterisk"></span>Health</div>
+					<div onclick="getTopUrlByCat('Home')"><span class="icon-asterisk"></span>Home</div>
+					<div onclick="getTopUrlByCat('News')"><span class="icon-asterisk"></span>News</div>
+					<div onclick="getTopUrlByCat('Recreation')"><span class="icon-asterisk"></span>Recreation</div>
+					<div onclick="getTopUrlByCat('Reference')"><span class="icon-asterisk"></span>Reference</div>
+					<div onclick="getTopUrlByCat('Regional')"><span class="icon-asterisk"></span>Regional</div>
+					<div onclick="getTopUrlByCat('Science')"><span class="icon-asterisk"></span>Science</div>
+					<div onclick="getTopUrlByCat('Shopping')"><span class="icon-asterisk"></span>Shopping</div>
+					<div onclick="getTopUrlByCat('Society')"><span class="icon-asterisk"></span>Society</div>
+					<div onclick="getTopUrlByCat('Sports')"><span class="icon-asterisk"></span>Sports</div>
+				</b>
+			</font>
+				
+		</div>
+
+	<div class="span6"><h3>Choose a category to view the most visited web sites from that category</h3></div>
+		<div style="width: 70%; float:right">
+			<!-- Donut Chart code-->
+			
+			<div id="donutchart" style="width: 600px; height: 270px;">
+				<!-- <object type="text/html" data="DonutModuleRight.html" style="width:95%;height:300px;margin:2%;"></object> -->
+			
+			</div>
+		</div>
+	</div>
+	<input type = "hidden" name = "hid" id = "hid"/>
+	</body>
+</html>

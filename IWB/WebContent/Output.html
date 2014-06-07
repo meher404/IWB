@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button id="startButton" onclick="start()">Start</button>
+	<button onclick="stop()">Stop</button>
+	<button onclick="clearText()">Clear</button>
+	<textarea id="displayTextArea" readonly="readonly" rows="30" cols="45"></textarea>
+	<script type='text/javascript'>
+		var eventSource=null;
+		function start(){
+			//console.log('HIIIIII');
+			eventSource=new EventSource('GetMessagesServlet');
+			eventSource.onopen=function(){displayTextArea.value+='connected...'+'\n';};
+			console.log('after connect');   
+			
+		      eventSource.onmessage=function(messageoutput){
+		    	  console.log('inside messageoutput');
+		    	  console.log(messageoutput);
+		    	  displayTextArea.value+=messageoutput.data+"\n\n";
+		    	  
+		    	  var k=messageoutput.data;
+		    	 // var k=JSON.stringify(i);
+		    	  console.log('k='+k);
+		    	  var temp=JSON.parse(k);
+		    	  displayTextArea.value+=temp.message;
+		    	  
+		    	  
+		    	 /*  var test = {name:"uhalini", age:21};
+		    	  var testt=JSON.stringify(test);
+		          var datap=JSON.parse(testt);
+		    	 console.log('after json');
+		    	 displayTextArea.value+=datap.name;
+		    	 displayTextArea.value+=datap.age; */
+		    	 
+		      };
+			
+			eventSource.onerror=function(){displayTextArea.value+='error occures...'+'\n';};
+			startButton.disabled=true;
+		function stop(){
+			startButton.disabled=false;
+			eventSource.close();
+		}
+		function clearText(){
+			displayTextArea.value='';
+		
+		}
+		}
+	</script>
+</body>
+</html>
+
+

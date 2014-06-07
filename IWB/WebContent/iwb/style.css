@@ -1,0 +1,298 @@
+@charset "utf-8";
+
+body {
+	background: #fff url(files/bg.png) repeat-x;
+	margin: 0px;
+	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 18px;
+	color: #797979;
+}
+
+/* Mozilla based browsers */
+::-moz-selection {
+       background-color:#7f0b10;
+       color:#fff;
+}
+
+/* Works in Safari */
+::selection {
+       background-color:#7f0b10;
+       color:#fff;
+}
+
+a:link {
+	text-decoration:none;
+	color: #660609;
+}
+
+a:visited {
+	text-decoration:none;
+	color: #660609;
+}
+
+a:hover {
+	text-decoration:none;
+	color: #3e0204;
+}
+
+a:active {
+	text-decoration:none;
+	color: #660609;
+}
+
+
+/*--HEADER--*/
+
+#fold {
+display: none;
+}
+
+#menuFix {
+display: none;
+}
+
+
+#header {
+	width: 960px;
+	height: 250px;
+	margin: 0 auto;
+	padding: 60px 20px;	
+}
+
+#logo {
+	width: 224px;
+	height: 224px;
+	background: url(files/line_bg.gif) repeat-y right;
+	padding-right: 30px;
+	float: left;
+}
+#logoLogin {
+	margin-top:50px;
+	width: 224px;
+	height: 224px;
+	background: url(files/line_bg.gif) repeat-y right;
+	padding-right: 30px;
+	float: left;
+}
+#headerRight {
+	width: 670px;
+	height: 184px;
+	float: left;
+	color: #95aabf;
+	padding-left: 30px;
+	padding-top: 40px;
+}
+
+#headerRightLogin {
+	margin-top:50px;
+	width: 670px;
+	height: 184px;
+	float: left;
+	color: #95aabf;
+	padding-left: 30px;
+	padding-top: 40px;
+}
+
+/*--INNER--*/
+
+.greyBox {
+	background-color: #292929;
+	color: #fff;
+	background: -webkit-linear-gradient(top, #111111, #292929);
+	background: -moz-linear-gradient(top, #111111, #292929);
+	background: -o-linear-gradient(top, #111111, #292929);
+	background: -linear-gradient(top, #111111, #292929);
+}
+
+
+.greyBox2 {
+	background-color: #a1a0a0;
+	color: #fff;
+	background: -webkit-linear-gradient(top, #535353, #a1a0a0);
+	background: -moz-linear-gradient(top, #535353, #a1a0a0);
+	background: -o-linear-gradient(top, #535353, #a1a0a0);
+	background: -linear-gradient(top, #535353, #a1a0a0);
+}
+.smallInnerBox {
+	width: 800px;
+	font-size: 14px;
+	text-align: justify;
+	margin: 0 auto;
+	padding: 60px;
+	line-height: 20px;
+}
+
+#footer {
+	margin-top: 25px;
+	text-align: center;
+	font-size: 13px;
+}
+
+.textInWhite {
+	width: 960px;
+	margin: 0 auto;
+	padding: 50px;
+	text-align: justify;	
+}
+
+.centerYoutube {
+	width: 560px;
+	margin: 0 auto;
+	padding: 50px;
+}
+
+.followWeb {
+	padding: 10px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
+	font-style: italic;
+	border-bottom: 1px solid #bdbdbd;
+}
+
+.followWebInner1 {
+	width: 300px;
+	float: left;
+	margin-left: 200px;
+	margin-top: 30px;
+	line-height: 30px;
+}
+
+.followWebInner2 {
+	width: 300px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 30px;
+	line-height: 30px;
+}
+
+#menuFix {
+	width: 100px;
+	height: 25px;
+	position:fixed;
+	padding: 10px;
+	-webkit-border-radius: 0px 0px 10px 10px;
+	-moz-border-radius:0px 0px 10px 10px;
+	-o-border-radius: 0px 0px 10px 10px;
+	border-radius: 0px 0px 10px 10px;
+	top: 0px;
+	right: 300px;
+	background-color: RGBA(0,0,0,0.5);	
+}
+
+/*--BUTTONS--*/
+
+
+#qBut {
+	width: 	64px;
+	height: 64px;
+	background: url(files/q_hover.png) top;
+	cursor: pointer;
+	margin: 0 auto;	
+}
+
+#installBut {
+	width: 	297px;
+	height: 100px;
+	background: url(files/install_but.png) top;
+	cursor: pointer;
+	margin-top: 20px;
+	float: left;
+}
+
+
+#installBothChr {
+	width: 	149px;
+	height: 50px;
+	background: url(files/install_but_chr.png) top;
+	cursor: pointer;
+	margin-top: 20px;
+	float: left;
+}
+
+#installBothFx {
+	width: 	149px;
+	height: 50px;
+	background: url(files/install_but_fx.png) top;
+	cursor: pointer;
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
+}
+
+#howWorksBut {
+	width: 	297px;
+	height: 100px;
+	background: url(files/howworks_but.png) top;
+	cursor: pointer;
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
+}
+
+#fbBut {
+	width: 	185px;
+	height: 67px;
+	background: url(files/fb.jpg) top;
+	cursor: pointer;
+	margin: 0 auto;	
+}
+
+#gplusBut {
+	width: 	190px;
+	height: 67px;
+	background: url(files/gplus.png) top;
+	cursor: pointer;
+	margin: 0 auto;	
+}
+
+.nextBut {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 41px; 
+	height: 41px;
+	background:url(files/arrow_but.png) top;
+	cursor: pointer;
+	-webkit-transition: 0.2s;
+	-moz-transition: 0.2s;
+	-o-transition: 0.2s;
+	transition: 0.2s;
+}
+
+#qBut:hover, #installBut:hover, #howWorksBut:hover, #fbBut:hover,#gplusBut:hover, #installBothChr:hover, #installBothFx:hover ,.nextBut:hover   {
+	background-position: bottom;
+}
+
+/*--FONT STYLES--*/
+
+.fontGreySmall {
+	font-size: 8px;
+}
+
+
+.font22 {
+	font-size: 22px
+}
+
+.font30 {
+	font-size:30px;
+}
+
+.fontGreen {
+	color: #2cd30c;
+}
+
+.fontBlue {
+	color: #2b5f91
+}
+
+.fontRedBig {
+	color: #a81a1f;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.fontRed {
+	color: #a81a1f;
+}
+
